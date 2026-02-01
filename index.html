@@ -1,171 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For Aanya 💖</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Aanya 💖</title>
 
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      overflow: hidden;
-    }
+<style>
+*{box-sizing:border-box}
 
-    .card {
-      background: #fff0f3;
-      padding: 28px;
-      border-radius: 24px;
-      width: 90%;
-      max-width: 360px;
-      margin: auto;
-      margin-top: 14vh;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-      position: relative;
-      z-index: 10;
-    }
+body{
+  margin:0;
+  height:100vh;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff9a9e,#fad0c4);
+  overflow:hidden;
+  text-align:center;
+}
 
-    h1 {
-      color: #c9184a;
-      margin-bottom: 10px;
-    }
+/* COMMON */
+.hidden{display:none}
+.center{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  flex-direction:column;
+  padding:20px;
+}
+.card{
+  background:#fff0f3;
+  padding:28px;
+  border-radius:24px;
+  max-width:380px;
+  width:100%;
+  box-shadow:0 15px 40px rgba(0,0,0,0.25);
+}
 
-    p {
-      font-size: 16px;
-      color: #333;
-      line-height: 1.6;
-    }
+/* TEXT */
+h1{color:#c9184a}
+p{color:#333;font-size:16px;line-height:1.6}
+h2{color:#ff4d6d}
 
-    h2 {
-      color: #ff4d6d;
-      margin-top: 20px;
-    }
+/* BUTTONS */
+button{
+  padding:12px 26px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+}
+.primary{
+  background:linear-gradient(135deg,#ff4d6d,#ff758f);
+  color:#fff;
+  box-shadow:0 6px 18px rgba(255,77,109,.5);
+}
+.secondary{
+  background:#dee2e6;
+}
 
-    .buttons {
-      margin-top: 26px;
-      position: relative;
-      height: 110px;
-    }
+/* HEARTS */
+.heart{
+  position:fixed;
+  bottom:-10px;
+  color:#ff4d6d;
+  animation:floatUp 6s linear infinite;
+  opacity:.8;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1)}
+  100%{transform:translateY(-100vh) scale(1.6);opacity:0}
+}
 
-    button {
-      padding: 12px 26px;
-      font-size: 16px;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      position: absolute;
-    }
+/* FIREWORK */
+.fire{
+  position:fixed;
+  font-size:24px;
+  animation:boom 1s ease-out forwards;
+}
+@keyframes boom{
+  0%{transform:scale(0);opacity:1}
+  100%{transform:scale(2);opacity:0}
+}
 
-    #yesBtn {
-      background: linear-gradient(135deg, #ff4d6d, #ff758f);
-      color: white;
-      left: 26%;
-      box-shadow: 0 6px 18px rgba(255,77,109,0.5);
-    }
-
-    #noBtn {
-      background: #dee2e6;
-      color: #333;
-      left: 55%;
-    }
-
-    /* ❤️ Floating hearts */
-    .heart {
-      position: fixed;
-      bottom: -10px;
-      color: #ff4d6d;
-      font-size: 20px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.85;
-    }
-
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-100vh) scale(1.6);
-        opacity: 0;
-      }
-    }
-  </style>
+/* MOVING NO BUTTON */
+#noBtn{position:absolute}
+.buttons{position:relative;height:120px}
+</style>
 </head>
 
 <body>
 
-  <!-- 🎵 Background Music -->
-  <audio id="bgMusic" loop>
-    <source src="music.mp3" type="audio/mpeg">
-  </audio>
+<!-- MUSIC -->
+<audio id="music1" src="sorrymp3.mp3" loop></audio>
+<audio id="music2" src="lovemp3.mp3" loop></audio>
 
+<!-- PHASE 0 : GIFT -->
+<div id="phase0" class="center">
   <div class="card">
-    <h1>Hey Aanya ❤️</h1>
+    <h1>Hello Aanya 💖</h1>
+    <p>Here’s a present for you,<br>only my dear 🎁</p>
+    <button class="primary" onclick="openGift()">🎁 Open Gift</button>
+  </div>
+</div>
 
+<!-- PHASE 1 : APOLOGY -->
+<div id="phase1" class="center hidden">
+  <div class="card">
+    <h1>I’m Sorry Aanya 💔</h1>
     <p>
-      From the moment you came into my life,  
-      everything feels softer, warmer and brighter ✨  
+      I know I hurt you, and I want you to know that it was never my intention.
+      Sometimes I fail to express myself the right way, and in that silence,
+      I ended up hurting the person who matters the most to me.
       <br><br>
-      You are my smile, my calm, and my favorite feeling 🌸  
+      I am deeply sorry for the pain I caused you.
+      You mean more to me than my ego, my mistakes, or my fears.
       <br><br>
-      So today, I just want to ask you something straight from my heart…
+      If I could go back in time, I would choose my words better,
+      listen more carefully, and protect your heart the way it deserves.
+      <br><br>
+      Please forgive me, not because I ask,
+      but because I truly want to be better—for you.
     </p>
+    <br>
+    <button class="primary" onclick="toPhase2()">✉️ Click here</button>
+  </div>
+</div>
 
-    <h2>💌 Aanya, will you be my Valentine? 💌</h2>
-
+<!-- PHASE 2 : FOREVER QUESTION -->
+<div id="phase2" class="center hidden">
+  <div class="card">
+    <h2 id="typing"></h2>
     <div class="buttons">
-      <button id="yesBtn" onclick="yesClicked()">YES 😍</button>
-      <button id="noBtn">NO 🙃</button>
+      <button class="primary" onclick="toPhase3()">YES 😍</button>
+      <button class="secondary" id="noBtn">NO 🙃</button>
     </div>
   </div>
+</div>
 
-  <script>
-    /* 🎵 Start music on first touch (mobile friendly) */
-    document.body.addEventListener("click", () => {
-      document.getElementById("bgMusic").play();
-    }, { once: true });
+<!-- PHASE 3 : FINAL MESSAGE -->
+<div id="phase3" class="center hidden">
+  <div class="card">
+    <h1>From My Deep Heart ❤️</h1>
+    <p>
+      Aanya, you are not just someone I love,
+      you are someone I choose—every day.
+      <br><br>
+      Thank you for being patient with me,
+      for understanding me,
+      and for being you.
+      <br><br>
+      I promise to walk with you,
+      respect you,
+      and love you honestly.
+    </p>
+    <br>
+    <button class="primary" onclick="sendWhatsApp()">💖 Send My Answer</button>
+  </div>
+</div>
 
-    /* 😈 NO button runs away */
-    const noBtn = document.getElementById("noBtn");
-    noBtn.addEventListener("mouseover", moveButton);
-    noBtn.addEventListener("touchstart", moveButton);
+<script>
+/* GIFT OPEN */
+function openGift(){
+  firework();
+  document.getElementById("phase0").classList.add("hidden");
+  document.getElementById("phase1").classList.remove("hidden");
+  document.getElementById("music1").play();
+}
 
-    function moveButton() {
-      const x = Math.random() * 220 - 110;
-      const y = Math.random() * 220 - 110;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
-    }
+/* FIREWORK */
+function firework(){
+  for(let i=0;i<15;i++){
+    let f=document.createElement("div");
+    f.className="fire";
+    f.innerHTML="🎆";
+    f.style.left=Math.random()*100+"vw";
+    f.style.top=Math.random()*100+"vh";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1000);
+  }
+}
 
-    /* ❤️ Floating hearts generator */
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 22 + 14 + "px";
-      document.body.appendChild(heart);
+/* PHASE SWITCH */
+function toPhase2(){
+  document.getElementById("music1").pause();
+  document.getElementById("phase1").classList.add("hidden");
+  document.getElementById("phase2").classList.remove("hidden");
+  document.getElementById("music2").play();
+  typeText();
+}
 
-      setTimeout(() => {
-        heart.remove();
-      }, 6000);
-    }
-    setInterval(createHeart, 400);
+/* TYPING EFFECT */
+let text="Aanya, will you be my forever? ❤️";
+let i=0;
+function typeText(){
+  if(i<text.length){
+    document.getElementById("typing").innerHTML+=text.charAt(i);
+    i++;
+    setTimeout(typeText,80);
+  }
+}
 
-    /* 💖 YES → WhatsApp */
-    function yesClicked() {
-      const message = encodeURIComponent(
-        "I said YES ❤️💖🥰"
-      );
+/* NO BUTTON RUNS */
+const noBtn=document.getElementById("noBtn");
+noBtn.addEventListener("mouseover",moveNo);
+noBtn.addEventListener("touchstart",moveNo);
+function moveNo(){
+  noBtn.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
+}
 
-      const phoneNumber = "918287034496";
+/* FINAL */
+function toPhase3(){
+  document.getElementById("music2").pause();
+  document.getElementById("phase2").classList.add("hidden");
+  document.getElementById("phase3").classList.remove("hidden");
+}
 
-      window.location.href =
-        `https://wa.me/${phoneNumber}?text=${message}`;
-    }
-  </script>
+/* WHATSAPP */
+function sendWhatsApp(){
+  const msg=encodeURIComponent("YES ❤️ I will be your forever");
+  window.location.href="https://wa.me/918287034496?text="+msg;
+}
+
+/* HEARTS */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=Math.random()*20+14+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+},400);
+</script>
 
 </body>
 </html>
