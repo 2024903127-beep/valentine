@@ -38,8 +38,8 @@ body{
 
 /* TEXT */
 h1{color:#c9184a}
-p{color:#333;font-size:16px;line-height:1.6}
 h2{color:#ff4d6d}
+p{color:#333;font-size:16px;line-height:1.6}
 
 /* BUTTONS */
 button{
@@ -65,6 +65,7 @@ button{
   color:#ff4d6d;
   animation:floatUp 6s linear infinite;
   opacity:.8;
+  z-index:1;
 }
 @keyframes floatUp{
   0%{transform:translateY(0) scale(1)}
@@ -76,15 +77,16 @@ button{
   position:fixed;
   font-size:24px;
   animation:boom 1s ease-out forwards;
+  z-index:9999;
 }
 @keyframes boom{
   0%{transform:scale(0);opacity:1}
   100%{transform:scale(2);opacity:0}
 }
 
-/* MOVING NO BUTTON */
-#noBtn{position:absolute}
+/* NO BUTTON */
 .buttons{position:relative;height:120px}
+#noBtn{position:absolute}
 </style>
 </head>
 
@@ -94,7 +96,7 @@ button{
 <audio id="music1" src="sorrymp3.mp3" loop></audio>
 <audio id="music2" src="lovemp3.mp3" loop></audio>
 
-<!-- PHASE 0 : GIFT -->
+<!-- PHASE 0 -->
 <div id="phase0" class="center">
   <div class="card">
     <h1>Hello Aanya 💖</h1>
@@ -103,30 +105,26 @@ button{
   </div>
 </div>
 
-<!-- PHASE 1 : APOLOGY -->
+<!-- PHASE 1 -->
 <div id="phase1" class="center hidden">
   <div class="card">
     <h1>I’m Sorry Aanya 💔</h1>
     <p>
-      I know I hurt you, and I want you to know that it was never my intention.
-      Sometimes I fail to express myself the right way, and in that silence,
-      I ended up hurting the person who matters the most to me.
+      I know I hurt you, and it was never my intention.
+      I failed to express myself properly and ended up
+      hurting the person who means the most to me.
       <br><br>
-      I am deeply sorry for the pain I caused you.
-      You mean more to me than my ego, my mistakes, or my fears.
+      I am truly sorry for the pain I caused you.
+      You matter more to me than my mistakes.
       <br><br>
-      If I could go back in time, I would choose my words better,
-      listen more carefully, and protect your heart the way it deserves.
-      <br><br>
-      Please forgive me, not because I ask,
-      but because I truly want to be better—for you.
+      I want to be better — for you, with you.
     </p>
     <br>
     <button class="primary" onclick="toPhase2()">✉️ Click here</button>
   </div>
 </div>
 
-<!-- PHASE 2 : FOREVER QUESTION -->
+<!-- PHASE 2 -->
 <div id="phase2" class="center hidden">
   <div class="card">
     <h2 id="typing"></h2>
@@ -137,20 +135,18 @@ button{
   </div>
 </div>
 
-<!-- PHASE 3 : FINAL MESSAGE -->
+<!-- PHASE 3 -->
 <div id="phase3" class="center hidden">
   <div class="card">
     <h1>From My Deep Heart ❤️</h1>
     <p>
       Aanya, you are not just someone I love,
-      you are someone I choose—every day.
+      you are someone I choose every day.
       <br><br>
-      Thank you for being patient with me,
-      for understanding me,
-      and for being you.
+      Thank you for being patient with me.
       <br><br>
-      I promise to walk with you,
-      respect you,
+      I promise to respect you,
+      support you,
       and love you honestly.
     </p>
     <br>
@@ -159,12 +155,14 @@ button{
 </div>
 
 <script>
-/* GIFT OPEN */
+/* OPEN GIFT */
 function openGift(){
-  firework();
   document.getElementById("phase0").classList.add("hidden");
   document.getElementById("phase1").classList.remove("hidden");
-  document.getElementById("music1").play();
+
+  document.getElementById("music1").play().catch(()=>{});
+
+  setTimeout(firework,100);
 }
 
 /* FIREWORK */
@@ -180,16 +178,20 @@ function firework(){
   }
 }
 
-/* PHASE SWITCH */
+/* PHASE 2 */
 function toPhase2(){
   document.getElementById("music1").pause();
   document.getElementById("phase1").classList.add("hidden");
   document.getElementById("phase2").classList.remove("hidden");
-  document.getElementById("music2").play();
+
+  document.getElementById("music2").play().catch(()=>{});
+
+  i=0;
+  document.getElementById("typing").innerHTML="";
   typeText();
 }
 
-/* TYPING EFFECT */
+/* TYPING */
 let text="Aanya, will you be my forever? ❤️";
 let i=0;
 function typeText(){
@@ -200,15 +202,15 @@ function typeText(){
   }
 }
 
-/* NO BUTTON RUNS */
+/* NO BUTTON MOVE */
 const noBtn=document.getElementById("noBtn");
-noBtn.addEventListener("mouseover",moveNo);
-noBtn.addEventListener("touchstart",moveNo);
+noBtn.addEventListener("pointerenter",moveNo);
 function moveNo(){
-  noBtn.style.transform=`translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
+  noBtn.style.transform=
+    `translate(${Math.random()*200-100}px,${Math.random()*200-100}px)`;
 }
 
-/* FINAL */
+/* PHASE 3 */
 function toPhase3(){
   document.getElementById("music2").pause();
   document.getElementById("phase2").classList.add("hidden");
